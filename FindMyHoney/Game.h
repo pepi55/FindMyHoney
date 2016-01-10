@@ -1,8 +1,5 @@
 #pragma once
 
-#include "SFML/Window.hpp"
-#include "SFML/Graphics.hpp"
-
 // There is going to be only one Game available at all times.
 // This will function as a global interface for the game.
 class Game
