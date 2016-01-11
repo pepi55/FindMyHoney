@@ -264,5 +264,5 @@ _Pvt_Extensions
 .fake/
 
 # Project relevant stuff
-!./FindMyHoney/SFML-2.3.2/bin/sfml*
+!./FindMyHoney/SFML-2.3.2/bin/*
 !./FindMyHoney/SFML-2.3.2/lib/*
