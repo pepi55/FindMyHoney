@@ -11,23 +11,24 @@ MainMenu::MenuOption MainMenu::show(sf::RenderWindow &window)
 	// Setup button regions.
 	// Play button.
 	MenuItem playButton;
-	playButton.rect.top = 230;
-	playButton.rect.left = 140;
-	playButton.rect.width = 745;
-	playButton.rect.height = 365;
+	playButton.rect.left = 230; //x
+	playButton.rect.top = 140; //y
+	playButton.rect.width = 515; //w
+	playButton.rect.height = 230; //h
 	playButton.action = PLAY;
 
 	// Exit button.
 	MenuItem exitButton;
-	exitButton.rect.top = 220;
-	exitButton.rect.left = 380;
-	exitButton.rect.width = 760;
-	exitButton.rect.height = 600;
+	exitButton.rect.top = 380;
+	exitButton.rect.left = 220;
+	exitButton.rect.width = 545;
+	exitButton.rect.height = 225;
 	exitButton.action = EXIT;
 
 	menuItems.push_back(playButton);
 	menuItems.push_back(exitButton);
 
+	//window.clear();
 	window.draw(sprite);
 	window.display();
 
@@ -61,16 +62,12 @@ MainMenu::MenuOption MainMenu::getMenuResponse(sf::RenderWindow &window)
 MainMenu::MenuOption MainMenu::handleClick(int x, int y)
 {
 	std::list<MenuItem>::iterator itor;
-	sf::Vector2<int> point;
-
-	point.x = x;
-	point.y = y;
 	
 	for (itor = menuItems.begin(); itor != menuItems.end(); itor++)
 	{
 		sf::Rect<int> menuItemRect = (*itor).rect; // Dereference the iterator to use its contents.
 
-		if (menuItemRect.contains(point))
+		if (menuItemRect.contains(x, y))
 		{
 			return (*itor).action;
 		}
