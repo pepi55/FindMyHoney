@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "MainMenu.h"
 
 MainMenu::MenuOption MainMenu::show(sf::RenderWindow &window)
@@ -10,17 +11,19 @@ MainMenu::MenuOption MainMenu::show(sf::RenderWindow &window)
 	// Setup button regions.
 	// Play button.
 	MenuItem playButton;
-	playButton.rect.top = 0;
-	playButton.rect.left = 0;
-	playButton.rect.width = 0;
-	playButton.rect.height = 0;
+	playButton.rect.top = 230;
+	playButton.rect.left = 140;
+	playButton.rect.width = 745;
+	playButton.rect.height = 365;
+	playButton.action = PLAY;
 
 	// Exit button.
 	MenuItem exitButton;
-	exitButton.rect.top = 0;
-	exitButton.rect.left = 0;
-	exitButton.rect.width = 0;
-	exitButton.rect.height = 0;
+	exitButton.rect.top = 220;
+	exitButton.rect.left = 380;
+	exitButton.rect.width = 760;
+	exitButton.rect.height = 600;
+	exitButton.action = EXIT;
 
 	menuItems.push_back(playButton);
 	menuItems.push_back(exitButton);
@@ -58,15 +61,16 @@ MainMenu::MenuOption MainMenu::getMenuResponse(sf::RenderWindow &window)
 MainMenu::MenuOption MainMenu::handleClick(int x, int y)
 {
 	std::list<MenuItem>::iterator itor;
+	sf::Vector2<int> point;
+
+	point.x = x;
+	point.y = y;
 	
 	for (itor = menuItems.begin(); itor != menuItems.end(); itor++)
 	{
 		sf::Rect<int> menuItemRect = (*itor).rect; // Dereference the iterator to use its contents.
 
-		if (menuItemRect.top < y &&
-			menuItemRect.height > y &&
-			menuItemRect.left < x &&
-			menuItemRect.width > x)
+		if (menuItemRect.contains(point))
 		{
 			return (*itor).action;
 		}
