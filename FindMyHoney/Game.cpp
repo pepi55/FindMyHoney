@@ -5,6 +5,7 @@
 
 Game::GameState Game::state = INIT;
 sf::RenderWindow Game::window;
+GameObjectManager Game::goManager;
 
 Game::Game(void)
 {
@@ -14,7 +15,7 @@ Game::~Game(void)
 {
 }
 
-void Game::start(void)
+void Game::init(void)
 {
 	if (state != INIT)
 	{
@@ -23,6 +24,13 @@ void Game::start(void)
 	}
 
 	window.create(sf::VideoMode(1024, 768, 32), "Find My Honey!");
+
+	GoodEntity *honey = new GoodEntity();
+	honey->load("images/honey.png");
+	honey->setPosition((window.getSize().x / 2), (window.getSize().y / 2));
+
+	goManager.add("honey", honey);
+
 	state = Game::SPLASH;
 
 	while (!isExiting())
@@ -48,46 +56,47 @@ bool Game::isExiting(void)
 void Game::gameLoop(void)
 {
 	sf::Event currentEvent;
+	window.pollEvent(currentEvent);
 
-	while (window.pollEvent(currentEvent))
+	switch (state)
 	{
-		switch (state)
+	case Game::INIT:
+		break;
+
+	case Game::SPLASH:
+		showSplashScreen();
+		break;
+
+	case Game::MAINMENU:
+		showMenu();
+		break;
+
+	case Game::PLAYING:
+		window.clear(sf::Color(0, 0, 0));
+
+		goManager.drawAllObjects(window);
+
+		window.display();
+
+		if (currentEvent.type == sf::Event::Closed)
 		{
-		case Game::INIT:
-			break;
-
-		case Game::SPLASH:
-			showSplashScreen();
-			break;
-
-		case Game::MAINMENU:
-			showMenu();
-			break;
-
-		case Game::PLAYING:
-			window.clear(sf::Color(0, 0, 0));
-			window.display();
-
-			if (currentEvent.type == sf::Event::Closed)
-			{
-				state = Game::EXIT;
-			}
-
-			if (currentEvent.type == sf::Event::KeyPressed)
-			{
-				if (currentEvent.key.code == sf::Keyboard::Escape)
-				{
-					showMenu();
-				}
-			}
-			break;
-
-		case Game::EXIT:
-			break;
-
-		default:
-			break;
+			state = Game::EXIT;
 		}
+
+		if (currentEvent.type == sf::Event::KeyPressed)
+		{
+			if (currentEvent.key.code == sf::Keyboard::Escape)
+			{
+				showMenu();
+			}
+		}
+		break;
+
+	case Game::EXIT:
+		break;
+
+	default:
+		break;
 	}
 }
 
