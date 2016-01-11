@@ -9,6 +9,7 @@
 #include <map>
 #include <iostream>
 #include <cassert>
+#include <list>
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>

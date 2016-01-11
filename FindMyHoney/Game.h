@@ -11,10 +11,14 @@ class Game
 		static bool isExiting(void);
 		static void gameLoop(void);
 
+		static void showSplashScreen(void);
+		static void showMenu(void);
+
 		enum GameState
 		{
 			INIT,
 			SPLASH,
+			PAUSE,
 			MAINMENU,
 			PLAYING,
 			EXIT
