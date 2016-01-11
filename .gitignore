@@ -262,3 +262,6 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# Project relevant stuff
+!FindMyHoney/SFML-2.3.2/*
