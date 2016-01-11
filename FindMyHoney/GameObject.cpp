@@ -1,5 +1,5 @@
-#include "GameObject.h"
 #include "stdafx.h"
+#include "GameObject.h"
 
 GameObject::GameObject(void)
 	: isLoaded(false)
