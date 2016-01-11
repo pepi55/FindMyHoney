@@ -3,8 +3,9 @@
 #include "stdafx.h"
 #include "Game.h"
 
-int main()
+int main(void)
 {
-	Game::start();
+	Game::init();
+
 	return 0;
 }
