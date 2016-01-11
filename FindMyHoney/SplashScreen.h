@@ -4,5 +4,8 @@
 class SplashScreen
 {
 	public:
+		SplashScreen(void);
+		~SplashScreen(void);
+
 		void show(sf::RenderWindow &window);
 };

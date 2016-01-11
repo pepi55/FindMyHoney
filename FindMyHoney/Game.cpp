@@ -6,6 +6,14 @@
 Game::GameState Game::state = INIT;
 sf::RenderWindow Game::window;
 
+Game::Game(void)
+{
+}
+
+Game::~Game(void)
+{
+}
+
 void Game::start(void)
 {
 	if (state != INIT)

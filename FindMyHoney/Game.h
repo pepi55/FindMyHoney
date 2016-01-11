@@ -5,6 +5,9 @@
 class Game
 {
 	public:
+		Game(void);
+		~Game(void);
+
 		static void start(void);
 
 	private:

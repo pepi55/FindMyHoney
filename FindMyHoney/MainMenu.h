@@ -7,6 +7,9 @@
 class MainMenu
 {
 	public:
+		MainMenu(void);
+		~MainMenu(void);
+
 		enum MenuOption
 		{
 			PLAY,
@@ -23,6 +26,7 @@ class MainMenu
 		MenuOption show(sf::RenderWindow &window);
 
 	private:
+		// The main menu event loop.
 		MenuOption getMenuResponse(sf::RenderWindow &window);
 		MenuOption handleClick(int x, int y);
 

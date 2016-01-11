@@ -1,6 +1,14 @@
 #include "stdafx.h"
 #include "SplashScreen.h"
 
+SplashScreen::SplashScreen(void)
+{
+}
+
+SplashScreen::~SplashScreen(void)
+{
+}
+
 void SplashScreen::show(sf::RenderWindow &window)
 {
 	sf::Texture texture;

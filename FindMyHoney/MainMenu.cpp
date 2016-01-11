@@ -1,6 +1,14 @@
 #include "stdafx.h"
 #include "MainMenu.h"
 
+MainMenu::MainMenu(void)
+{
+}
+
+MainMenu::~MainMenu(void)
+{
+}
+
 MainMenu::MenuOption MainMenu::show(sf::RenderWindow &window)
 {
 	// Load menu image.
@@ -28,7 +36,6 @@ MainMenu::MenuOption MainMenu::show(sf::RenderWindow &window)
 	menuItems.push_back(playButton);
 	menuItems.push_back(exitButton);
 
-	//window.clear();
 	window.draw(sprite);
 	window.display();
 
