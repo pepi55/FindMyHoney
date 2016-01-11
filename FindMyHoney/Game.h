@@ -5,7 +5,7 @@
 class Game
 {
 	public:
-		void start(void);
+		static void start(void);
 
 	private:
 		static bool isExiting(void);

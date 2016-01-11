@@ -8,13 +8,14 @@ void Game::start(void)
 {
 	if (state != INIT)
 	{
+		fprintf(stderr, "[Game] Not in initialization state!\n");
 		return;
 	}
 
 	window.create(sf::VideoMode(1024, 768, 32), "Find My Honey!");
 	state = Game::PLAYING;
 
-	while (!isExiting)
+	while (!isExiting())
 	{
 		gameLoop();
 	}
