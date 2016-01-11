@@ -15,6 +15,9 @@ class GameObject
 		virtual void load(std::string name);
 		virtual void draw(sf::RenderWindow &window);
 
+		virtual std::string getLayer(void);
+		virtual void setLayer(std::string layer);
+
 		virtual void setPosition(float x, float y);
 
 	private:
@@ -23,4 +26,6 @@ class GameObject
 
 		std::string filename;
 		bool isLoaded;
+
+		std::string layerValue;
 };

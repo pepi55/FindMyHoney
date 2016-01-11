@@ -3,6 +3,7 @@
 
 GameObject::GameObject(void)
 	: isLoaded(false)
+	, layerValue("001")
 {
 }
 
@@ -31,6 +32,16 @@ void GameObject::draw(sf::RenderWindow &window)
 	{
 		window.draw(sprite);
 	}
+}
+
+std::string GameObject::getLayer(void)
+{
+	return layerValue;
+}
+
+void GameObject::setLayer(std::string layer)
+{
+	layerValue = layer;
 }
 
 void GameObject::setPosition(float x, float y)
