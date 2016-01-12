@@ -26,7 +26,7 @@ void Game::init(void)
 	window.create(sf::VideoMode(1024, 768, 32), "Find My Honey!");
 
 	GoodEntity *honey = new GoodEntity();
-	honey->load("images/honey.png");
+	honey->load("images/goodguy.png");
 	honey->setPosition((window.getSize().x / 2), (window.getSize().y / 2));
 
 	goManager.add("honey", honey);
