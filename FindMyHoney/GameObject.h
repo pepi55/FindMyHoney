@@ -14,11 +14,17 @@ class GameObject
 
 		virtual void load(std::string name);
 		virtual void draw(sf::RenderWindow &window);
+		virtual void update(float elapsedTime);
+
+		virtual void setPosition(float x, float y);
+		virtual sf::Vector2f getPosition(void) const;
+		virtual bool goIsLoaded(void) const;
 
 		virtual std::string getLayer(void);
 		virtual void setLayer(std::string layer);
 
-		virtual void setPosition(float x, float y);
+	protected:
+		sf::Sprite getSprite(void);
 
 	private:
 		sf::Texture texture;

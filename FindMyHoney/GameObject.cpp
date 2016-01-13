@@ -34,14 +34,8 @@ void GameObject::draw(sf::RenderWindow &window)
 	}
 }
 
-std::string GameObject::getLayer(void)
+void GameObject::update(float elapsedTime)
 {
-	return layerValue;
-}
-
-void GameObject::setLayer(std::string layer)
-{
-	layerValue = layer;
 }
 
 void GameObject::setPosition(float x, float y)
@@ -50,4 +44,34 @@ void GameObject::setPosition(float x, float y)
 	{
 		sprite.setPosition(x, y);
 	}
+}
+
+sf::Vector2f GameObject::getPosition(void) const
+{
+	if (isLoaded)
+	{
+		return sprite.getPosition();
+	}
+
+	return sf::Vector2f();
+}
+
+sf::Sprite GameObject::getSprite(void)
+{
+	return sprite;
+}
+
+bool GameObject::goIsLoaded(void) const
+{
+	return isLoaded;
+}
+
+std::string GameObject::getLayer(void)
+{
+	return layerValue;
+}
+
+void GameObject::setLayer(std::string layer)
+{
+	layerValue = layer;
 }
