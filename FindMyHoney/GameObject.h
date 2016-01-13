@@ -24,6 +24,7 @@ class GameObject
 		virtual void setLayer(std::string layer);
 
 	protected:
+		void setSpriteTexture(sf::Texture texture);
 		sf::Sprite getSprite(void);
 
 	private:

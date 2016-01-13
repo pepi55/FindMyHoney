@@ -56,6 +56,11 @@ sf::Vector2f GameObject::getPosition(void) const
 	return sf::Vector2f();
 }
 
+void GameObject::setSpriteTexture(sf::Texture texture)
+{
+	sprite.setTexture(texture);
+}
+
 sf::Sprite GameObject::getSprite(void)
 {
 	return sprite;

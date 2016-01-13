@@ -8,9 +8,10 @@ class GameEntity : public GameObject
 		GameEntity(void);
 		~GameEntity(void);
 
-		void update();
-		void draw(sf::RenderWindow &window);
+		virtual void update();
+		virtual void draw(sf::RenderWindow &window);
 
 		private:
 			sf::Clock timer;
+			sf::Rect<int> playField;
 };
