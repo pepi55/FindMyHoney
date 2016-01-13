@@ -2,10 +2,14 @@
 #include "Game.h"
 #include "MainMenu.h"
 #include "SplashScreen.h"
+#include "GameEntity.h"
 
 Game::GameState Game::state = INIT;
-sf::RenderWindow Game::window;
 GameObjectManager Game::goManager;
+
+sf::RenderWindow Game::window;
+sf::Clock Game::gameClock;
+sf::Clock Game::frameClock;
 
 Game::Game(void)
 {
@@ -23,13 +27,17 @@ void Game::init(void)
 		return;
 	}
 
-	window.create(sf::VideoMode(1024, 768, 32), "Find My Honey!");
+	window.create(sf::VideoMode(WINDOW_X, WINDOW_Y, 32), "Find My Honey!");
 
-	GoodEntity *honey = new GoodEntity();
-	honey->load("images/goodguy.png");
-	honey->setPosition((window.getSize().x / 2), (window.getSize().y / 2));
+	GameEntity *goodEntity = new GameEntity();
+	goodEntity->setPosition((window.getSize().x / 2), (window.getSize().y / 2));
 
-	goManager.add("honey", honey);
+	goManager.add("goodEntity", goodEntity);
+
+	GameObject *background = new GameObject();
+	background->load("images/background.png");
+
+	goManager.add("background", background);
 
 	state = Game::SPLASH;
 
@@ -39,6 +47,21 @@ void Game::init(void)
 	}
 
 	window.close();
+}
+
+sf::RenderWindow &Game::getWindow(void)
+{
+	return window;
+}
+
+float Game::getTimeSinceStart(void)
+{
+	return gameClock.getElapsedTime().asSeconds();
+}
+
+float Game::getTimeSinceLastFrame(void)
+{
+	return frameClock.getElapsedTime().asSeconds();
 }
 
 bool Game::isExiting(void)
@@ -67,6 +90,9 @@ void Game::gameLoop(void)
 		showSplashScreen();
 		break;
 
+	case Game::PAUSE:
+		break;
+
 	case Game::MAINMENU:
 		showMenu();
 		break;
@@ -74,6 +100,7 @@ void Game::gameLoop(void)
 	case Game::PLAYING:
 		window.clear(sf::Color(0, 0, 0));
 
+		goManager.updateAllObjects();
 		goManager.drawAllObjects(window);
 
 		window.display();
@@ -98,6 +125,8 @@ void Game::gameLoop(void)
 	default:
 		break;
 	}
+
+	frameClock.restart();
 }
 
 void Game::showSplashScreen(void)
@@ -126,6 +155,7 @@ void Game::showMenu(void)
 		break;
 
 	case MainMenu::NONE:
+		state = Game::MAINMENU;
 		break;
 
 	default:

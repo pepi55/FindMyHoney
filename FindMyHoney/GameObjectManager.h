@@ -20,6 +20,7 @@ class GameObjectManager
 
 		// Draws all available gameobjects.
 		void drawAllObjects(sf::RenderWindow &window);
+		void updateAllObjects(void);
 
 	private:
 		// Similar to a dictionary in C#.

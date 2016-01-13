@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameObjectManager.h"
+#include "Game.h"
 
 GameObjectManager::GameObjectManager()
 {
@@ -61,5 +62,13 @@ void GameObjectManager::drawAllObjects(sf::RenderWindow &window)
 
 		// TODO: Add layering capability.
 		//object.first.insert(0, object.second->getLayer());
+	}
+}
+
+void GameObjectManager::updateAllObjects(void)
+{
+	for each (std::pair<std::string, GameObject *> object in gameObjects)
+	{
+		object.second->update();
 	}
 }

@@ -14,7 +14,7 @@ class GameObject
 
 		virtual void load(std::string name);
 		virtual void draw(sf::RenderWindow &window);
-		virtual void update(float elapsedTime);
+		virtual void update();
 
 		virtual void setPosition(float x, float y);
 		virtual sf::Vector2f getPosition(void) const;

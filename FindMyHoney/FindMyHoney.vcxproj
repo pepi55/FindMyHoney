@@ -150,7 +150,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
-    <ClInclude Include="GoodEntity.h" />
+    <ClInclude Include="GameEntity.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="SplashScreen.h" />
     <ClInclude Include="stdafx.h" />
@@ -161,7 +161,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
-    <ClCompile Include="GoodEntity.cpp" />
+    <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
     <ClCompile Include="stdafx.cpp">
