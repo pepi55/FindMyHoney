@@ -5,6 +5,11 @@
 Character::Character()
 	: isHoney(false)
 {
+	loadSpriteSheet("images/charactersheet.png", 90, 64, 2);
+	assert(goIsLoaded());
+
+	getSprite().setOrigin(getSprite().getGlobalBounds().width / 2,
+		getSprite().getGlobalBounds().height / 2);
 }
 
 Character::~Character()

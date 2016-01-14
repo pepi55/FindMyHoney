@@ -11,7 +11,6 @@ class GameEntity : public GameObject
 		virtual void update();
 		virtual void draw(sf::RenderWindow &window);
 
-		private:
-			sf::Clock timer;
-			sf::Rect<int> playField;
+	private:
+		sf::Clock timer;
 };
