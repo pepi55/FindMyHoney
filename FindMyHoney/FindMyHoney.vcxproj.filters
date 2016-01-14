@@ -42,7 +42,10 @@
     <ClInclude Include="GameEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
+    <ClInclude Include="Thug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Honey.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,7 +74,10 @@
     <ClCompile Include="GameEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
+    <ClCompile Include="Thug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Honey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

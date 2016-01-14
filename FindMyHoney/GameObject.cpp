@@ -54,6 +54,7 @@ void GameObject::loadSpriteSheet(std::string name, int imgW, int imgH, int nosw)
 			filename = name;
 			isLoaded = true;
 			spriteSize = spriteRect;
+			numberOfSprites = nosw;
 		}
 	}
 }
@@ -92,8 +93,16 @@ void GameObject::nextSprite(void)
 {
 	if (isLoaded)
 	{
-		currentSprite++;
-		spriteSize.left = currentSprite;
+		if (currentSprite > numberOfSprites)
+		{
+			currentSprite = 0;
+		}
+		else
+		{
+			currentSprite++;
+		}
+
+		spriteSize.left = currentSprite * spriteSize.width;
 
 		texture.loadFromImage(image, spriteSize);
 		sprite.setTexture(texture);
@@ -122,7 +131,7 @@ float GameObject::getHeight(void) const
 
 sf::Rect<float> GameObject::getBoundingRect(void) const
 {
-	return sprite.getLocalBounds();
+	return sprite.getGlobalBounds();
 }
 
 std::string GameObject::getLayer(void)

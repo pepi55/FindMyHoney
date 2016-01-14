@@ -17,6 +17,7 @@ class GameObject
 
 		virtual void draw(sf::RenderWindow &window);
 		virtual void update();
+		virtual void nextSprite(void);
 
 		virtual void setPosition(float x, float y);
 		virtual sf::Vector2f getPosition(void) const;
@@ -30,7 +31,6 @@ class GameObject
 		virtual void setLayer(std::string layer);
 
 	protected:
-		void nextSprite(void);
 		sf::Sprite getSprite(void);
 
 	private:
@@ -42,6 +42,7 @@ class GameObject
 		std::string filename;
 		bool isLoaded;
 		int currentSprite;
+		int numberOfSprites;
 
 		std::string layerValue;
 };

@@ -15,6 +15,7 @@ class Game
 		static sf::RenderWindow &getWindow(void);
 		static float getTimeSinceStart(void);
 		static float getTimeSinceLastFrame(void);
+		static GameObjectManager getGameObjectManager(void);
 
 		static const int WINDOW_X = 1024;
 		static const int WINDOW_Y = 768;

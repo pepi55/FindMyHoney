@@ -2,6 +2,8 @@
 
 #include "GameObject.h"
 
+// In case I want to ever add another unit to
+// the game, I have the GameEntity class to extend.
 class GameEntity : public GameObject
 {
 	public:
@@ -9,7 +11,7 @@ class GameEntity : public GameObject
 		~GameEntity(void);
 
 		virtual void update();
-		virtual void draw(sf::RenderWindow &window);
+		virtual float getElapsedTimeAsSeconds(void);
 
 	private:
 		sf::Clock timer;

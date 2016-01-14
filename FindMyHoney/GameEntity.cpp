@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "GameEntity.h"
 #include "Game.h"
 
@@ -36,7 +37,7 @@ void GameEntity::update()
 	}
 }
 
-void GameEntity::draw(sf::RenderWindow &window)
+float GameEntity::getElapsedTimeAsSeconds(void)
 {
-	GameObject::draw(window);
+	return timer.getElapsedTime().asSeconds();
 }

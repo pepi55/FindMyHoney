@@ -5,7 +5,7 @@
 #include "Game.h"
 #include "MainMenu.h"
 #include "SplashScreen.h"
-#include "Character.h"
+#include "Thug.h"
 
 Game::GameState Game::state = INIT;
 GameObjectManager Game::goManager;
@@ -32,11 +32,11 @@ void Game::init(void)
 
 	window.create(sf::VideoMode(WINDOW_X, WINDOW_Y, 32), "Find My Honey!");
 
-	std::deque<Character *> entities;
+	std::deque<Thug *> entities;
 
 	for (int i = 0; i < 5; ++i)
 	{
-		entities.push_back(new Character());
+		entities.push_back(new Thug());
 		goManager.add("entity" + i, entities[i]);
 	}
 
@@ -68,6 +68,11 @@ float Game::getTimeSinceStart(void)
 float Game::getTimeSinceLastFrame(void)
 {
 	return frameClock.getElapsedTime().asSeconds();
+}
+
+GameObjectManager Game::getGameObjectManager(void)
+{
+	return goManager;
 }
 
 bool Game::isExiting(void)
