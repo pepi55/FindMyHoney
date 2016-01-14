@@ -11,7 +11,9 @@ class GameEntity : public GameObject
 		~GameEntity(void);
 
 		virtual void update();
-		virtual float getElapsedTimeAsSeconds(void);
+
+	protected:
+		void randomizePosition(void);
 
 	private:
 		sf::Clock timer;

@@ -1,11 +1,10 @@
 #include "stdafx.h"
 
-#include <deque>
-
 #include "Game.h"
 #include "MainMenu.h"
 #include "SplashScreen.h"
 #include "Thug.h"
+#include "Honey.h"
 
 Game::GameState Game::state = INIT;
 GameObjectManager Game::goManager;
@@ -32,12 +31,11 @@ void Game::init(void)
 
 	window.create(sf::VideoMode(WINDOW_X, WINDOW_Y, 32), "Find My Honey!");
 
-	std::deque<Thug *> entities;
+	goManager.add("honey", new Honey());
 
 	for (int i = 0; i < 5; ++i)
 	{
-		entities.push_back(new Thug());
-		goManager.add("entity" + i, entities[i]);
+		goManager.add("thug" + i, new Thug());
 	}
 
 	GameObject *background = new GameObject();
