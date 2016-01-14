@@ -4,27 +4,36 @@
 #include "Game.h"
 
 GameEntity::GameEntity(void)
+	: timeSinceStart(0.0f)
+	, timeElapsed(0.0f)
+	, isClicked(false)
 {
-	std::srand(unsigned(std::time(0)));
+	std::srand(unsigned(std::time(nullptr)));
 }
 
 GameEntity::~GameEntity(void)
 {
 }
 
-void GameEntity::update()
+void GameEntity::update(float timeSinceLastFrame)
 {
-	int timeElapsed = (int)timer.getElapsedTime().asSeconds();
+	timeElapsed += timeSinceLastFrame;
+	timeSinceStart += timeSinceLastFrame;
 
 	// After a couple of seconds randomize position of character.
-	if (timeElapsed > 0 && timeElapsed % 2 == 0)
+	// Exponential decay in game speed increase.
+	if (timeElapsed > 0.5f + (5.0f * std::expf(-timeSinceStart / 250.0f)))
 	{
 		randomizePosition();
+		resetClick();
+
+		timeElapsed = 0.0f;
 	}
 }
 
 void GameEntity::randomizePosition(void)
 {
+	// TODO: Collision check.
 	sf::FloatRect spriteBounds = getSprite().getGlobalBounds();
 
 	int floor = spriteBounds.width;
@@ -38,6 +47,19 @@ void GameEntity::randomizePosition(void)
 	int targetY = floor + (int)(range * std::rand()) / (RAND_MAX + 1.0f);
 
 	setPosition(targetX, targetY);
+}
 
-	timer.restart();
+bool GameEntity::hasBeenClicked(void)
+{
+	return isClicked;
+}
+
+void GameEntity::clicked(void)
+{
+	isClicked = true;
+}
+
+void GameEntity::resetClick()
+{
+	isClicked = false;
 }

@@ -16,20 +16,19 @@ Honey::~Honey(void)
 {
 }
 
-void Honey::update(void)
+void Honey::update(float timeSinceLastFrame)
 {
-	GameEntity::update();
+	GameEntity::update(timeSinceLastFrame);
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (!hasBeenClicked() && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		sf::Vector2i mousePos = sf::Mouse::getPosition(Game::getWindow());
 
 		if (getBoundingRect().contains(mousePos.x, mousePos.y))
 		{
-			// TODO: Game::Score++;
-			std::cout << "Score++" << std::endl;
+			Game::addScore(275);
 
-			randomizePosition();
+			clicked();
 		}
 	}
 }

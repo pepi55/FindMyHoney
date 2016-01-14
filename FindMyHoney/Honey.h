@@ -9,6 +9,6 @@ class Honey : public GameEntity
 		Honey(void);
 		~Honey(void);
 
-		void update(void);
+		void update(float timeSinceLastFrame);
 		void draw(sf::RenderWindow &window);
 };

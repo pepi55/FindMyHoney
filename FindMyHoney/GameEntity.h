@@ -10,11 +10,23 @@ class GameEntity : public GameObject
 		GameEntity(void);
 		~GameEntity(void);
 
-		virtual void update();
-
-	protected:
+		virtual void update(float timeSinceLastFrame);
 		void randomizePosition(void);
 
+	protected:
+		bool hasBeenClicked(void);
+		// Sets isClicked to true
+		void clicked(void);
+
 	private:
-		sf::Clock timer;
+		// Resets isClicked after each time
+		// the thugs change position.
+		void resetClick();
+
+		// Used to keep track of time.
+		float timeElapsed;
+		float timeSinceStart;
+
+		// Checks wether entity has been clicked.
+		bool isClicked;
 };

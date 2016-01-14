@@ -29,6 +29,7 @@ void GameObjectManager::remove(std::string name)
 	}
 }
 
+// Get the gameobject corresponding to the name.
 GameObject *GameObjectManager::get(std::string name) const
 {
 	std::map<std::string, GameObject *>::const_iterator results = gameObjects.find(name);
@@ -46,6 +47,7 @@ int GameObjectManager::getObjectCount(void) const
 	return gameObjects.size();
 }
 
+// Calls draw method of all objects.
 void GameObjectManager::drawAllObjects(sf::RenderWindow &window)
 {
 	/*
@@ -59,16 +61,18 @@ void GameObjectManager::drawAllObjects(sf::RenderWindow &window)
 	for each (std::pair<std::string, GameObject *> object in gameObjects)
 	{
 		object.second->draw(window);
-
-		// TODO: Add layering capability.
-		//object.first.insert(0, object.second->getLayer());
 	}
 }
 
+// Each update function has the time since the last frame.
 void GameObjectManager::updateAllObjects(void)
 {
+	float timeDelta = frameClock.getElapsedTime().asSeconds();
+
 	for each (std::pair<std::string, GameObject *> object in gameObjects)
 	{
-		object.second->update();
+		object.second->update(timeDelta);
 	}
+
+	frameClock.restart();
 }

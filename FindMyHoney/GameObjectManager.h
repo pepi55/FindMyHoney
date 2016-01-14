@@ -25,6 +25,8 @@ class GameObjectManager
 	private:
 		// Similar to a dictionary in C#.
 		std::map<std::string, GameObject *> gameObjects;
+		// Frame clock.
+		sf::Clock frameClock;
 
 		// Used to deallocate unused GameObjects.
 		struct GameObjectDeallocator

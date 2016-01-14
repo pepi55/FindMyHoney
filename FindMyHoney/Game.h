@@ -13,9 +13,13 @@ class Game
 		static void init(void);
 
 		static sf::RenderWindow &getWindow(void);
-		static float getTimeSinceStart(void);
-		static float getTimeSinceLastFrame(void);
 		static GameObjectManager getGameObjectManager(void);
+
+		static void addScore(int amount);
+		static void subtractScore(int amount);
+		static void loseLife(void);
+
+		static int getScore(void);
 
 		static const int WINDOW_X = 1024;
 		static const int WINDOW_Y = 768;
@@ -26,12 +30,14 @@ class Game
 
 		static void showSplashScreen(void);
 		static void showMenu(void);
+		static void showScore(void);
 
+		// TODO: Add endgame state.
 		enum GameState
 		{
 			INIT,
 			SPLASH,
-			PAUSE,
+			GAMEOVER,
 			MAINMENU,
 			PLAYING,
 			EXIT
@@ -40,8 +46,8 @@ class Game
 		static GameState state;
 		static sf::RenderWindow window;
 
-		static sf::Clock gameClock;
-		static sf::Clock frameClock;
-
 		static GameObjectManager goManager;
+
+		static int score;
+		static int life;
 };

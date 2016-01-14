@@ -1,17 +1,20 @@
 #include "stdafx.h"
 
 #include "Game.h"
+
 #include "MainMenu.h"
 #include "SplashScreen.h"
+#include "ScoreScreen.h"
+
 #include "Thug.h"
 #include "Honey.h"
 
 Game::GameState Game::state = INIT;
 GameObjectManager Game::goManager;
-
 sf::RenderWindow Game::window;
-sf::Clock Game::gameClock;
-sf::Clock Game::frameClock;
+
+int Game::score = 0;
+int Game::life = 3;
 
 Game::Game(void)
 {
@@ -31,11 +34,17 @@ void Game::init(void)
 
 	window.create(sf::VideoMode(WINDOW_X, WINDOW_Y, 32), "Find My Honey!");
 
-	goManager.add("honey", new Honey());
+	Honey *honey = new Honey();
+	goManager.add("honey", honey);
+	honey->randomizePosition();
+
+	Thug *thug;
 
 	for (int i = 0; i < 5; ++i)
 	{
-		goManager.add("thug" + i, new Thug());
+		thug = new Thug();
+		goManager.add("thug" + i, thug);
+		thug->setPosition(thug->getWidth() * i, WINDOW_Y / 2);
 	}
 
 	GameObject *background = new GameObject();
@@ -58,19 +67,39 @@ sf::RenderWindow &Game::getWindow(void)
 	return window;
 }
 
-float Game::getTimeSinceStart(void)
-{
-	return gameClock.getElapsedTime().asSeconds();
-}
-
-float Game::getTimeSinceLastFrame(void)
-{
-	return frameClock.getElapsedTime().asSeconds();
-}
-
 GameObjectManager Game::getGameObjectManager(void)
 {
 	return goManager;
+}
+
+void Game::addScore(int amount)
+{
+	score += amount;
+}
+
+void Game::subtractScore(int amount)
+{
+	score -= amount;
+
+	if (score < 0)
+	{
+		score = 0;
+	}
+}
+
+void Game::loseLife(void)
+{
+	life--;
+
+	if (life <= 0)
+	{
+		state = GAMEOVER;
+	}
+}
+
+int Game::getScore(void)
+{
+	return score;
 }
 
 bool Game::isExiting(void)
@@ -99,10 +128,14 @@ void Game::gameLoop(void)
 		showSplashScreen();
 		break;
 
-	case Game::PAUSE:
+	case Game::GAMEOVER:
+		showScore();
 		break;
 
 	case Game::MAINMENU:
+		score = 0;
+		life = 3;
+
 		showMenu();
 		break;
 
@@ -123,7 +156,7 @@ void Game::gameLoop(void)
 		{
 			if (currentEvent.key.code == sf::Keyboard::Escape)
 			{
-				showMenu();
+				state = Game::GAMEOVER;
 			}
 		}
 		break;
@@ -134,8 +167,6 @@ void Game::gameLoop(void)
 	default:
 		break;
 	}
-
-	frameClock.restart();
 }
 
 void Game::showSplashScreen(void)
@@ -170,4 +201,13 @@ void Game::showMenu(void)
 	default:
 		break;
 	}
+}
+
+void Game::showScore(void)
+{
+	ScoreScreen gameOver;
+
+	gameOver.show(window);
+
+	state = Game::SPLASH;
 }

@@ -13,22 +13,20 @@ class GameObject
 		virtual ~GameObject(void);
 
 		virtual void load(std::string name);
-		void GameObject::loadSpriteSheet(std::string name, int imgW, int imgH, int nosw);
-
 		virtual void draw(sf::RenderWindow &window);
-		virtual void update();
-		virtual void nextSprite(void);
+
+		// Only used by children of the class.
+		virtual void update(float timeSinceLastFrame);
 
 		virtual void setPosition(float x, float y);
 		virtual sf::Vector2f getPosition(void) const;
+		// Check if the gameobject loaded correctly.
 		virtual bool goIsLoaded(void) const;
 
+		// Get sprite dimensions.
 		virtual float getWidth(void) const;
 		virtual float getHeight(void) const;
 		virtual sf::Rect<float> getBoundingRect(void) const;
-
-		virtual std::string getLayer(void);
-		virtual void setLayer(std::string layer);
 
 	protected:
 		sf::Sprite getSprite(void);
@@ -41,8 +39,4 @@ class GameObject
 
 		std::string filename;
 		bool isLoaded;
-		int currentSprite;
-		int numberOfSprites;
-
-		std::string layerValue;
 };

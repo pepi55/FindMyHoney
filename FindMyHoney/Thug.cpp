@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "Thug.h"
 
-Thug::Thug()
+Thug::Thug(void)
 {
 	load("images/thug.png");
 	assert(goIsLoaded());
@@ -12,22 +12,26 @@ Thug::Thug()
 		getSprite().getGlobalBounds().height / 2);
 }
 
-Thug::~Thug()
+Thug::~Thug(void)
 {
 }
 
-void Thug::update()
+void Thug::update(float timeSinceLastFrame)
 {
-	GameEntity::update();
+	GameEntity::update(timeSinceLastFrame);
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (!hasBeenClicked() && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		sf::Vector2i mousePos = sf::Mouse::getPosition(Game::getWindow());
 
 		if (getBoundingRect().contains(mousePos.x, mousePos.y))
 		{
-			// TODO: Game::Score--;
-			std::cout << "Score--" << std::endl;
+			// Let's make it more punishing for a player to click on a thug...
+			Game::subtractScore(280);
+			Game::loseLife();
+			std::cout << "Triggort..." << std::endl;
+
+			clicked();
 		}
 	}
 }

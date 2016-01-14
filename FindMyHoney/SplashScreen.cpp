@@ -20,6 +20,7 @@ void SplashScreen::show(sf::RenderWindow &window)
 
 	sf::Sprite sprite(texture);
 
+	window.clear();
 	window.draw(sprite);
 	window.display();
 

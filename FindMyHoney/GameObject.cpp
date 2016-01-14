@@ -3,8 +3,6 @@
 
 GameObject::GameObject(void)
 	: isLoaded(false)
-	, currentSprite(1)
-	, layerValue("001")
 {
 }
 
@@ -27,38 +25,6 @@ void GameObject::load(std::string name)
 	}
 }
 
-void GameObject::loadSpriteSheet(std::string name, int imgW, int imgH, int nosw)
-{
-	if (image.loadFromFile("images/charactersheet.png") == false)
-	{
-		filename = "";
-		isLoaded = false;
-	}
-	else
-	{
-		sf::IntRect spriteRect;
-		spriteRect.width = imgW / nosw;
-		spriteRect.height = imgH;
-		spriteRect.left = currentSprite;
-		spriteRect.top = 1; // Only using a sprite with 1 row.
-
-		if (texture.loadFromImage(image, spriteRect) == false)
-		{
-			filename = "";
-			isLoaded = false;
-		}
-		else
-		{
-			sprite.setTexture(texture);
-
-			filename = name;
-			isLoaded = true;
-			spriteSize = spriteRect;
-			numberOfSprites = nosw;
-		}
-	}
-}
-
 void GameObject::draw(sf::RenderWindow &window)
 {
 	if (isLoaded)
@@ -67,7 +33,7 @@ void GameObject::draw(sf::RenderWindow &window)
 	}
 }
 
-void GameObject::update()
+void GameObject::update(float timeSinceLastFrame)
 {
 }
 
@@ -87,26 +53,6 @@ sf::Vector2f GameObject::getPosition(void) const
 	}
 
 	return sf::Vector2f();
-}
-
-void GameObject::nextSprite(void)
-{
-	if (isLoaded)
-	{
-		if (currentSprite > numberOfSprites)
-		{
-			currentSprite = 0;
-		}
-		else
-		{
-			currentSprite++;
-		}
-
-		spriteSize.left = currentSprite * spriteSize.width;
-
-		texture.loadFromImage(image, spriteSize);
-		sprite.setTexture(texture);
-	}
 }
 
 sf::Sprite GameObject::getSprite(void)
@@ -132,14 +78,4 @@ float GameObject::getHeight(void) const
 sf::Rect<float> GameObject::getBoundingRect(void) const
 {
 	return sprite.getGlobalBounds();
-}
-
-std::string GameObject::getLayer(void)
-{
-	return layerValue;
-}
-
-void GameObject::setLayer(std::string layer)
-{
-	layerValue = layer;
 }

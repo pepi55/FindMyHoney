@@ -8,6 +8,6 @@ class Thug : public GameEntity
 		Thug(void);
 		~Thug(void);
 
-		void update(void);
+		void update(float timeSinceLastFrame);
 		void draw(sf::RenderWindow &window);
 };
