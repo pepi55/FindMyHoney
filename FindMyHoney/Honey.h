@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "GameEntity.h"
 
+// The protagonist in the game.
 class Honey : public GameEntity
 {
 	public:

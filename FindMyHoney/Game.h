@@ -10,6 +10,7 @@ class Game
 		Game(void);
 		~Game(void);
 
+		// Used to initialize the game.
 		static void init(void);
 
 		static sf::RenderWindow &getWindow(void);
@@ -21,6 +22,7 @@ class Game
 
 		static int getScore(void);
 
+		// Window sizes.
 		static const int WINDOW_X = 1024;
 		static const int WINDOW_Y = 768;
 
@@ -32,7 +34,7 @@ class Game
 		static void showMenu(void);
 		static void showScore(void);
 
-		// TODO: Add endgame state.
+		// Game is state based.
 		enum GameState
 		{
 			INIT,
@@ -46,6 +48,7 @@ class Game
 		static GameState state;
 		static sf::RenderWindow window;
 
+		// GameObject Manager.
 		static GameObjectManager goManager;
 
 		static int score;

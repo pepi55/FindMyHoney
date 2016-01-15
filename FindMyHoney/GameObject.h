@@ -32,7 +32,6 @@ class GameObject
 		sf::Sprite getSprite(void);
 
 	private:
-		sf::Image image;
 		sf::Texture texture;
 		sf::Sprite sprite;
 		sf::IntRect spriteSize;

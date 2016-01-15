@@ -10,6 +10,7 @@ GameObject::~GameObject(void)
 {
 }
 
+// Load sprite from image on disk.
 void GameObject::load(std::string name)
 {
 	if (texture.loadFromFile(name) == false)

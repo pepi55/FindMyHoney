@@ -16,6 +16,7 @@ Thug::~Thug(void)
 {
 }
 
+// When clicked, reduce score, reduce life and set clicked.
 void Thug::update(float timeSinceLastFrame)
 {
 	GameEntity::update(timeSinceLastFrame);
@@ -29,7 +30,7 @@ void Thug::update(float timeSinceLastFrame)
 			// Let's make it more punishing for a player to click on a thug...
 			Game::subtractScore(280);
 			Game::loseLife();
-			std::cout << "Triggort..." << std::endl;
+			fprintf(stdout, "Wrong dude!\n");
 
 			clicked();
 		}

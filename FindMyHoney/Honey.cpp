@@ -16,6 +16,7 @@ Honey::~Honey(void)
 {
 }
 
+// When clicked add to user's score.
 void Honey::update(float timeSinceLastFrame)
 {
 	GameEntity::update(timeSinceLastFrame);
@@ -27,6 +28,7 @@ void Honey::update(float timeSinceLastFrame)
 		if (getBoundingRect().contains(mousePos.x, mousePos.y))
 		{
 			Game::addScore(275);
+			fprintf(stdout, "Found your honey!\n");
 
 			clicked();
 		}

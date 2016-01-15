@@ -10,14 +10,14 @@ ScoreScreen::~ScoreScreen(void)
 {
 }
 
+// Setup text, get score and display it.
 void ScoreScreen::show(sf::RenderWindow &window)
 {
 	sf::Font font;
 
 	if (!font.loadFromFile("fonts/verdana.ttf"))
 	{
-		std::cerr << "Font file not found! Not showing score..." << std::endl;
-
+		fprintf(stderr, "No font! Skipping score screen\n");
 		return;
 	}
 

@@ -9,6 +9,7 @@
 #include "Thug.h"
 #include "Honey.h"
 
+// Init variables.
 Game::GameState Game::state = INIT;
 GameObjectManager Game::goManager;
 sf::RenderWindow Game::window;
@@ -24,6 +25,7 @@ Game::~Game(void)
 {
 }
 
+// Call this to start the game.
 void Game::init(void)
 {
 	if (state != INIT)
@@ -34,6 +36,7 @@ void Game::init(void)
 
 	window.create(sf::VideoMode(WINDOW_X, WINDOW_Y, 32), "Find My Honey!");
 
+	// Add all gameObjects to the goManager.
 	Honey *honey = new Honey();
 	goManager.add("honey", honey);
 	honey->randomizePosition();
@@ -51,7 +54,9 @@ void Game::init(void)
 	background->load("images/background.png");
 
 	goManager.add("background", background);
+	// End of adding objects.
 
+	// Fire up the game!
 	state = Game::SPLASH;
 
 	while (!isExiting())
@@ -87,13 +92,14 @@ void Game::subtractScore(int amount)
 	}
 }
 
+// If player dies, make sure to end the game.
 void Game::loseLife(void)
 {
 	life--;
 
 	if (life <= 0)
 	{
-		state = GAMEOVER;
+		state = Game::GAMEOVER;
 	}
 }
 
@@ -114,6 +120,7 @@ bool Game::isExiting(void)
 	}
 }
 
+// Main game loop.
 void Game::gameLoop(void)
 {
 	sf::Event currentEvent;

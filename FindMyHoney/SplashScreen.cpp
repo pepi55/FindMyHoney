@@ -9,11 +9,13 @@ SplashScreen::~SplashScreen(void)
 {
 }
 
+// Show an image (assuming its dimensions are equal to the
+// window's dimensions).
 void SplashScreen::show(sf::RenderWindow &window)
 {
 	sf::Texture texture;
 
-	if (texture.loadFromFile("images/splashscreen.png") != true)
+	if (texture.loadFromFile("images/splashscreen.png") == false)
 	{
 		return;
 	}

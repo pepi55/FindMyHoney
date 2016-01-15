@@ -2,6 +2,7 @@
 
 #include "GameEntity.h"
 
+// Antagonist in the game.
 class Thug : public GameEntity
 {
 	public:

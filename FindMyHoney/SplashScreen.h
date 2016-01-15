@@ -1,6 +1,6 @@
 #pragma once
 
-// Splash screen shows an image if available otherwise skips screen.
+// Splash screen shows a splash image if available otherwise skips screen.
 class SplashScreen
 {
 	public:

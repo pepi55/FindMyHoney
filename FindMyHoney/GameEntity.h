@@ -11,6 +11,7 @@ class GameEntity : public GameObject
 		~GameEntity(void);
 
 		virtual void update(float timeSinceLastFrame);
+		// Used to randomize position within certain space.
 		void randomizePosition(void);
 
 	protected:
@@ -27,6 +28,6 @@ class GameEntity : public GameObject
 		float timeElapsed;
 		float timeSinceStart;
 
-		// Checks wether entity has been clicked.
+		// Used for checking whether entity has been clicked.
 		bool isClicked;
 };

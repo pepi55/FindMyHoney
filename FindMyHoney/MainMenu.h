@@ -17,6 +17,7 @@ class MainMenu
 			NONE
 		};
 
+		// Buttons in the main menu.
 		struct MenuItem
 		{
 			sf::Rect<int> rect;
