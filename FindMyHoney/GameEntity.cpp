@@ -22,7 +22,7 @@ void GameEntity::update(float timeSinceLastFrame)
 
 	// After a couple of seconds randomize position of character.
 	// Exponential decay in game speed increase.
-	if (timeElapsed > 0.5f + (5.0f * std::expf(-timeSinceStart / 250.0f)))
+	if (timeElapsed > 0.5f + (5.0f * std::expf(-timeSinceStart / 100.0f)))
 	{
 		randomizePosition();
 		resetClick();

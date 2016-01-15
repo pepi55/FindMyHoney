@@ -43,10 +43,10 @@ void Game::init(void)
 
 	Thug *thug;
 
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
 		thug = new Thug();
-		goManager.add("thug" + i, thug);
+		goManager.add("thug" + std::to_string(i), thug);
 		thug->setPosition(thug->getWidth() * i, WINDOW_Y / 2);
 	}
 
