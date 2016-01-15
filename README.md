@@ -1,5 +1,6 @@
 # FindMyHoney
 Programming assignment for the assessment at NHTV.
+(github page: http://github.com/pepi55/FindMyHoney/)
 
 Instructions:
 This is a reaction game. You have to find your honey and grab her fast before
