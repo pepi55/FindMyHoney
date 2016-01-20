@@ -1,4 +1,7 @@
 #include "stdafx.h"
+
+#include <algorithm>
+
 #include "GameObjectManager.h"
 #include "Game.h"
 
@@ -8,7 +11,7 @@ GameObjectManager::GameObjectManager()
 
 GameObjectManager::~GameObjectManager()
 {
-	std::_For_each(gameObjects.begin(), gameObjects.end(), GameObjectDeallocator());
+	std::for_each(gameObjects.begin(), gameObjects.end(), GameObjectDeallocator());
 }
 
 // Add an gameobject to the gameobject manager.
@@ -52,15 +55,15 @@ void GameObjectManager::drawAllObjects(sf::RenderWindow &window)
 {
 	/*
 	// Alternate for loop (for future reference).
-	for (auto const &objects : gameObjects)
-	{
-		objects.second->draw(window);
-	}
-	*/
-
 	for each (std::pair<std::string, GameObject *> object in gameObjects)
 	{
 		object.second->draw(window);
+	}
+	*/
+
+	for (auto const &objects : gameObjects)
+	{
+		objects.second->draw(window);
 	}
 }
 
@@ -69,9 +72,9 @@ void GameObjectManager::updateAllObjects(void)
 {
 	float timeDelta = frameClock.getElapsedTime().asSeconds();
 
-	for each (std::pair<std::string, GameObject *> object in gameObjects)
+	for (auto const &objects : gameObjects)
 	{
-		object.second->update(timeDelta);
+		objects.second->update(timeDelta);
 	}
 
 	frameClock.restart();
